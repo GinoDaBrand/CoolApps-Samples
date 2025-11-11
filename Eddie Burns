@@ -1,0 +1,695 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eddie Burns - Psychologist in Pretoria</title>
+    <!-- Google Fonts for a professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for easy theme management */
+        :root {
+            --primary-blue: #4a69bd; /* Darker blue for accents and main elements */
+            --secondary-blue: #88b3e8; /* Lighter blue for highlights */
+            --text-dark: #333333;
+            --text-light: #555555;
+            --bg-light: #f8f9fa; /* Off-white for section backgrounds */
+            --white: #ffffff;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Base Styles & Resets */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--bg-light);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 2em; }
+        h3 { font-size: 1.75em; }
+        h4 { font-size: 1.25em; }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .primary-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .primary-btn:hover {
+            background-color: #3b58a5; /* Slightly darker primary */
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Header Section */
+        .main-header {
+            background-color: var(--white);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky; /* Sticky header for easy navigation */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 1.8em;
+            color: var(--primary-blue);
+        }
+
+        .logo span {
+            display: block;
+            font-size: 0.9em;
+            color: var(--text-light);
+            margin-top: -5px; /* Adjust spacing below H1 */
+        }
+
+        /* Navigation */
+        .main-nav ul {
+            list-style: none;
+            display: flex; /* Flexbox for horizontal navigation */
+            gap: 25px;
+        }
+
+        .main-nav a {
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        /* Underline effect on hover for navigation links */
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none; /* Hidden on larger screens, shown on mobile */
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: url('https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: var(--bg-light);
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--white);
+        }
+
+        section h3 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        /* About Section (Flexbox layout) */
+        .about-section .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+        }
+
+        .about-section .text-content {
+            flex: 2; /* Takes up more space */
+            min-width: 300px;
+        }
+
+        .about-section .image-wrapper {
+            flex: 1; /* Takes up less space */
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-section img {
+            width: 100%;
+            max-width: 600px; /* Display as 600px wide */
+            height: 400px; /* Display as 400px high */
+            object-fit: cover; /* Ensures image covers the area without distortion */
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Services Section (CSS Grid layout) */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns */
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-item {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+        }
+
+        .service-item img {
+            width: 100%;
+            height: 220px; /* Consistent height for service card images */
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .service-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            padding: 0 15px;
+        }
+
+        .service-item p {
+            padding: 0 15px;
+            font-size: 0.95em;
+            color: var(--text-light);
+        }
+
+        /* Approach Section */
+        .approach-section {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .approach-section h3 {
+            color: var(--white);
+        }
+
+        .approach-section p {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .approach-list {
+            list-style: none;
+            display: flex; /* Flexbox for approach points */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px 30px;
+            margin-top: 30px;
+        }
+
+        .approach-list li {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.95em;
+            color: var(--white);
+        }
+
+        /* Contact Section (CSS Grid layout) */
+        .contact-section {
+            background-color: var(--bg-light);
+        }
+
+        .contact-section .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Info on left, form on right */
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info {
+            font-size: 1.1em;
+        }
+
+        .contact-info p strong {
+            color: var(--primary-blue);
+        }
+
+        .contact-info a {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Contact Form Styling */
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="tel"],
+        .contact-form textarea {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+            color: var(--text-dark);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.2); /* Focus highlight */
+        }
+
+        .contact-form textarea {
+            resize: vertical; /* Allow vertical resizing only */
+        }
+
+        .contact-form .primary-btn {
+            align-self: flex-start; /* Align button to the left */
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--text-dark);
+            color: var(--bg-light);
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .main-footer .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .main-footer a {
+            color: var(--secondary-blue);
+        }
+
+        .main-footer a:hover {
+            color: var(--white);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .main-nav {
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none; /* Hidden by default on small screens */
+                background-color: var(--white);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+                border-radius: 5px;
+                padding: 10px 0;
+            }
+
+            .main-nav ul.active {
+                display: flex; /* Show when active (toggled by JS) */
+            }
+
+            .main-nav li {
+                padding: 10px 20px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .main-nav li:last-child {
+                border-bottom: none;
+            }
+
+            .main-nav a {
+                display: block;
+                width: 100%;
+                padding: 0;
+            }
+            
+            .main-nav a::after { /* Hide underline for mobile menu items */
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+                position: absolute;
+                right: 20px;
+                top: 25px;
+            }
+
+            .hero-content h2 {
+                font-size: 2.2em;
+            }
+
+            .about-section .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .about-section .image-wrapper {
+                order: -1; /* Image appears before text on mobile */
+            }
+
+            .about-section img {
+                height: auto; /* Allow height to adjust proportionally */
+                max-height: 350px;
+            }
+
+            .contact-section .contact-grid {
+                grid-template-columns: 1fr; /* Single column for contact section */
+            }
+
+            .contact-info, .contact-form {
+                text-align: center;
+            }
+            
+            .contact-form .primary-btn {
+                align-self: center; /* Center button in form */
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .hero-section {
+                padding: 80px 20px;
+            }
+
+            .hero-content h2 {
+                font-size: 1.8em;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr; /* Single column for service grid */
+            }
+
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.7em; }
+            h3 { font-size: 1.5em; }
+        }
+
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.5em;
+            }
+            .logo span {
+                font-size: 0.8em;
+            }
+
+            .hero-section {
+                padding: 60px 15px;
+            }
+
+            .hero-content h2 {
+                font-size: 1.5em;
+            }
+
+            .hero-content p {
+                font-size: 1em;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            .main-footer .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Eddie Burns</h1>
+                <span>Psychologist, Pretoria</span>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#approach">Approach</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h2>Empathetic Support for Your Mental Well-being</h2>
+                <p>Eddie Burns is a dedicated psychologist in Pretoria, offering compassionate and professional support to help you navigate life's challenges and foster personal growth.</p>
+                <a href="#contact" class="btn primary-btn">Book a Session</a>
+            </div>
+        </section>
+
+        <section id="about" class="about-section container">
+            <div class="about-content">
+                <div class="text-content">
+                    <h3>About Eddie Burns</h3>
+                    <p>Eddie Burns is a registered psychologist with a passion for helping individuals achieve greater self-understanding and emotional resilience. With extensive experience working with adults, adolescents, and families, Eddie offers a safe, confidential, and non-judgmental space for exploration and healing.</p>
+                    <p>My approach is client-centered, integrating various therapeutic techniques tailored to meet your unique needs. Whether you're dealing with stress, anxiety, depression, relationship issues, or seeking personal development, I am here to guide you on your journey towards mental wellness.</p>
+                </div>
+                <div class="image-wrapper">
+                    <img src="https://images.pexels.com/photos/4033282/pexels-photo-4033282.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Eddie Burns providing empathetic counselling for mental well-being in a calm environment.">
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services-section container">
+            <h3>Our Services</h3>
+            <div class="service-grid">
+                <div class="service-item">
+                    <img src="https://images.pexels.com/photos/3845942/pexels-photo-3845942.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Reflective session promoting mental clarity and emotional growth with Eddie Burns Psychologist.">
+                    <h4>Individual Therapy</h4>
+                    <p>Personalized one-on-one sessions to address anxiety, depression, stress management, grief, trauma, and personal growth.</p>
+                </div>
+                <div class="service-item">
+                    <img src="https://images.pexels.com/photos/3845953/pexels-photo-3845953.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Professional and confidential environment for couples and family therapy by Eddie Burns.">
+                    <h4>Couples & Family Therapy</h4>
+                    <p>Facilitating healthier communication, resolving conflicts, and strengthening relationships within couples and families.</p>
+                </div>
+                <div class="service-item">
+                    <img src="https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Eddie Burns offering psychological assessments and comprehensive reports for various needs.">
+                    <h4>Psychological Assessments</h4>
+                    <p>Comprehensive assessments for diagnostic clarity, scholastic difficulties, career guidance, and forensic purposes.</p>
+                </div>
+                <div class="service-item">
+                    <img src="https://images.pexels.com/photos/7176034/pexels-photo-7176034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Mindfulness and stress reduction techniques offered by Eddie Burns Psychologist for a balanced life.">
+                    <h4>Stress & Burnout Management</h4>
+                    <p>Developing coping strategies and promoting resilience to effectively manage stress and prevent burnout.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="approach" class="approach-section">
+            <div class="container">
+                <h3>Our Therapeutic Approach</h3>
+                <p>At Eddie Burns Psychology, we believe in a holistic and integrative approach to mental health. Drawing from various evidence-based modalities such as Cognitive Behavioral Therapy (CBT), Dialectical Behavior Therapy (DBT), Psychodynamic Therapy, and Mindfulness-Based Cognitive Therapy (MBCT), we tailor our interventions to suit your specific needs and goals.</p>
+                <p>Our commitment is to create a supportive, empathetic, and confidential environment where you feel heard, understood, and empowered to make positive changes in your life. We work collaboratively with you to identify underlying issues, develop healthy coping mechanisms, and foster lasting well-being.</p>
+                <ul class="approach-list">
+                    <li>Client-Centered Care</li>
+                    <li>Evidence-Based Modalities</li>
+                    <li>Holistic Well-being</li>
+                    <li>Confidential & Supportive Environment</li>
+                    <li>Empowerment & Growth</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h3>Contact Eddie Burns</h3>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <p>Ready to take the first step towards a healthier, happier you? Reach out today to schedule a consultation or inquire about our services.</p>
+                        <p><strong>Phone:</strong> <a href="tel:+27781273453">+27 78 127 3453</a></p>
+                        <p><strong>Email:</strong> <a href="mailto:eddieburns@email.com">eddieburns@email.com</a></p>
+                        <p><strong>Address:</strong> [Your Clinic Address Here, e.g., 123 Wellness Way], Pretoria, South Africa</p>
+                        <!-- Optional social media links could go here -->
+                    </div>
+                    <div class="contact-form">
+                        <form action="#" method="POST">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required aria-label="Your Name">
+
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required aria-label="Your Email">
+
+                            <label for="phone">Phone (Optional)</label>
+                            <input type="tel" id="phone" name="phone" aria-label="Your Phone Number">
+
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required aria-label="Your Message"></textarea>
+
+                            <button type="submit" class="btn primary-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2023 Eddie Burns - Psychologist. All rights reserved.</p>
+            <div class="footer-contact">
+                <a href="tel:+27781273453">+27 78 127 3453</a> | <a href="mailto:eddieburns@email.com">eddieburns@email.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked (for single-page navigation)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
+```
